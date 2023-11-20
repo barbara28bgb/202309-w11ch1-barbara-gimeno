@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { type UserDataStructure } from "../types.js";
+import { type UserStructure } from "../types.js";
 
-const userSchema = new Schema<UserDataStructure>({
+const userSchema = new Schema<UserStructure>({
   name: {
     type: String,
     required: true,
@@ -15,6 +15,10 @@ const userSchema = new Schema<UserDataStructure>({
   password: {
     type: String,
     required: true,
+  },
+  _id: {
+    type: String,
+    requires: true,
   },
 });
 
