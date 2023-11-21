@@ -7,7 +7,10 @@ import type UserMoongoseRepository from "../repository/UserMoongoseRepository";
 class UserController {
   constructor(private readonly userRepository: UserMoongoseRepository) {}
 
-  loginUser = async (req: UserCredentialStructure, res: Response) => {
+  loginUser = async (
+    req: UserCredentialStructure,
+    res: Response,
+  ): Promise<void> => {
     try {
       const { username, password } = req.body;
       const user = await this.userRepository.getUser(username, password);
