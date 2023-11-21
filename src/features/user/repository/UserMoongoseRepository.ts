@@ -1,7 +1,7 @@
-import User from "../model/User";
+import bcrypt from "bcrypt";
+import User from "../model/User.js";
 import { type UserDataStructure, type UserWithoutPassword } from "../types";
 import { type UserRepository } from "./types";
-import bcrypt from "bcrypt";
 
 class UserMoongoseRepository implements UserRepository {
   async createUser(userData: UserDataStructure): Promise<UserWithoutPassword> {
@@ -29,7 +29,7 @@ class UserMoongoseRepository implements UserRepository {
 
       return user;
     } catch (error) {
-      throw new Error("Error creating user:" + (error as Error).message);
+      throw new Error("Error creating user: User not found");
     }
   }
 }
