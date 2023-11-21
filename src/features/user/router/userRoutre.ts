@@ -1,6 +1,6 @@
 import { Router } from "express";
-import UserMoongoseRepository from "../repository/UserMoongoseRepository";
-import UserController from "../controller/UserController";
+import UserMoongoseRepository from "../repository/UserMoongoseRepository.js";
+import UserController from "../controller/UserController.js";
 
 export const userRouter = Router();
 
