@@ -16,10 +16,6 @@ const userSchema = new Schema<UserStructure>({
     type: String,
     required: true,
   },
-  _id: {
-    type: String,
-    requires: true,
-  },
 });
 
 const User = model("User", userSchema, "users");
