@@ -7,7 +7,7 @@ const userSchema = new Schema<UserStructure>({
     required: true,
   },
   username: {
-    types: String,
+    type: String,
     required: true,
     minlength: 3,
     unique: true,
@@ -18,6 +18,6 @@ const userSchema = new Schema<UserStructure>({
   },
 });
 
-const User = model("User", userSchema, "users");
+const User = model("User", userSchema, "Users");
 
 export default User;
