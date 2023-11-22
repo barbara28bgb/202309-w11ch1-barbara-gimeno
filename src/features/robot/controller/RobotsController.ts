@@ -1,5 +1,6 @@
-import { type Request, type Response } from "express";
+import { type NextFunction, type Request, type Response } from "express";
 import type { RobotCreateRequest, RobotsRepository } from "../types.js";
+import { CustomError } from "../../../server/CustomError/CustomError.js";
 
 class RobotsController {
   constructor(private readonly robotsRepository: RobotsRepository) {}
@@ -12,13 +13,19 @@ class RobotsController {
   public createRobot = async (
     req: RobotCreateRequest,
     res: Response,
+    next: NextFunction,
   ): Promise<void> => {
     const robotData = req.body;
     try {
       const newRobot = await this.robotsRepository.createRobot(robotData);
       res.status(201).json({ robot: newRobot });
-    } catch {
-      res.status(500).json({ error: "Error creating the new robot" });
+    } catch (error) {
+      const customError = new CustomError(
+        "Error creating the new robot",
+        500,
+        (error as Error).message,
+      );
+      next(customError);
     }
   };
 }
