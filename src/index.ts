@@ -1,12 +1,16 @@
+import "dotenv/config";
+import debugCreator from "debug";
 import chalk from "chalk";
 import { startServer } from "./server/app.js";
 import { connectToDatabase } from "./database/index.js";
 import "./server/index.js";
 
+const debug = debugCreator("robots:src:index");
+
 const port = process.env.PORT ?? 4000;
 
 if (!process.env.MONGODB_URL) {
-  console.log(chalk.red("Missing MongoDB Connection String"));
+  debug(chalk.red("Missing MongoDB Connection String"));
   process.exit();
 }
 
